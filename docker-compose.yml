@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    volumes:
+      - ./backend:/srv/backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    volumes:
+      - ./frontend:/srv/frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - BACKEND_URL=http://backend:3001/api
